@@ -3,7 +3,7 @@ import com.EventKeeper.enums.type;
 
 
 public class Event {
-    private int id;
+    private final int id;
     private String title;
     private String description;
     private String location;
@@ -23,9 +23,6 @@ public class Event {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -65,5 +62,18 @@ public class Event {
 
     public void setType(type type) {
         this.type = type;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", location='" + location + '\'' +
+                ", date='" + date + '\'' +
+                ", type=" + type +
+                '}';
     }
 }
