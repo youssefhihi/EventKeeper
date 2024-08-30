@@ -3,6 +3,7 @@ import com.EventKeeper.enums.type;
 
 
 public class Event {
+    private static int counter = 1;
     private final int id;
     private String title;
     private String description;
@@ -10,8 +11,8 @@ public class Event {
     private String date;
     private type type;
 
-    public Event(int id, String title, String description, String location, String date, type type) {
-        this.id = id;
+    public Event(String title, String description, String location, String date, type type) {
+        this.id = counter++;
         this.title = title;
         this.description = description;
         this.location = location;

@@ -13,6 +13,7 @@ public class EventDaoImpl implements EventDAO {
 
     private Map<Integer, Event> events = new HashMap<>();
 
+
     @Override
     public void addEvent(Event event) {
         try {
