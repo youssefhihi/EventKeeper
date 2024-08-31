@@ -15,19 +15,25 @@ public class EventsUI {
 
     public static void run() {
         int choice = 0;
+
         do {
-            System.out.println("******************************************");
-            System.out.println("****** Welcome To Events Management ******");
-            System.out.println("******************************************");
-            System.out.println("1. Get All Events");
-            System.out.println("2. Search for event");
-            System.out.println("3. Add new event");
-            System.out.println("4. Update event");
-            System.out.println("5. Delete event");
-            System.out.println("6. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t====================================");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t||  Welcome To Events Management  ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t====================================");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|1|    Get All Events             ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|2|    Search for Event           ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|3|    Add New Event              ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|4|    Update Event               ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|5|    Delete Event               ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|6|    Exit                       ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t====================================");
             try {
-                System.out.print("Enter your choice: ");
+                System.out.print("\t\t\t\t\tEnter your choice: ");
                 choice = scanner.nextInt();
                 scanner.nextLine();
             }catch (Exception e){
@@ -36,30 +42,30 @@ public class EventsUI {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Fetching all events...");
+                    System.out.println("\t\t\t\t\tFetching all events...");
                         showEvents();
                     break;
                 case 2:
-                    System.out.println("Searching for an event...");
+                    System.out.println("\t\t\t\t\tSearching for an event...");
                         searchEvent();
                     break;
                 case 3:
-                    System.out.println("Adding a new event...");
+                    System.out.println("\t\t\t\t\tAdding a new event...");
                         addEvent();
                     break;
                 case 4:
-                    System.out.println("Updating an event...");
+                    System.out.println("\t\t\t\t\tUpdating an event...");
                         updateEvent();
                     break;
                 case 5:
-                    System.out.println("Deleting an event...");
+                    System.out.println("\t\t\t\t\tDeleting an event...");
                         deleteEvent();
                     break;
                 case 6:
-                    System.out.println("Exiting...");
+                    System.out.println("\t\t\t\t\tExiting...");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("\t\t\t\t\tInvalid choice. Please try again.");
                     break;
             }
         } while (choice != 7);
@@ -69,19 +75,22 @@ public class EventsUI {
         try {
             List<Event> events = eventDAO.getEvents();
             if (!events.isEmpty()) {
-                System.out.println("List of Events:");
-                System.out.println("-------------------------------------------------");
+                System.out.println("\t\t\t\t\tList of Events:");
+                System.out.println("\t\t\t\t\t-------------------------------------------------");
                 for (Event event : events) {
-                    System.out.println("ID: " + event.getId());
-                    System.out.println("Title: "+ event.getTitle());
-                    System.out.println("Description: " + event.getDescription());
-                    System.out.println("Date: "+ event.getDate());
-                    System.out.println("Location: "+ event.getLocation());
-                    System.out.println("Type: "+ event.getType());
-                    System.out.println("-------------------------------------------------");
+                    System.out.println("\t\t\t\t\tID: " + event.getId());
+                    System.out.println("\t\t\t\t\tTitle: "+ event.getTitle());
+                    System.out.println("\t\t\t\t\tDescription: " + event.getDescription());
+                    System.out.println("\t\t\t\t\tDate: "+ event.getDate());
+                    System.out.println("\t\t\t\t\tLocation: "+ event.getLocation());
+                    System.out.println("\t\t\t\t\tType: "+ event.getType());
+                    System.out.println("\t\t\t\t\t-------------------------------------------------");
                 }
             } else {
-                System.out.println("No events found.  :( ");
+                System.out.println("\t\t\t\t\t###########################");
+                System.out.println("\t\t\t\t\t##   No events found :(  ##");
+                System.out.println("\t\t\t\t\t###########################");
+
             }
         } catch (Exception e) {
             System.out.println("An error occurred while retrieving events.");
@@ -94,7 +103,9 @@ public class EventsUI {
         Event  event = eventData();
         try {
             eventDAO.addEvent(event);
-            System.out.println("Event added successfully.  :)");
+            System.out.println("\t\t\t\t\t###################################");
+            System.out.println("\t\t\t\t\t##  Event Added Successfully :)  ##");
+            System.out.println("\t\t\t\t\t###################################");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,9 +117,13 @@ public class EventsUI {
         try {
             boolean updated = eventDAO.updateEvent(event);
             if (updated){
-                System.out.println("Event updated successfully.  :)");
+                System.out.println("\t\t\t\t\t###################################");
+                System.out.println("\t\t\t\t\t##  Event Added Successfully :)  ##");
+                System.out.println("\t\t\t\t\t###################################");
             }else{
-                System.out.println("ID for event not found ");
+                System.out.println("\t\t\t\t\t#####################################");
+                System.out.println("\t\t\t\t\t##  No Event Found With This ID :( ##");
+                System.out.println("\t\t\t\t\t#####################################");
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -121,9 +136,13 @@ public class EventsUI {
         try{
            boolean deleted =  eventDAO.deleteEvent(id);
            if (deleted){
-               System.out.println("Event deleted successfully.  :)");
+               System.out.println("\t\t\t\t\t###################################");
+               System.out.println("\t\t\t\t\t##  Event Added Successfully :)  ##");
+               System.out.println("\t\t\t\t\t###################################");
            }else{
-               System.out.println("ID for event not found ");
+               System.out.println("\t\t\t\t\t#####################################");
+               System.out.println("\t\t\t\t\t##  No Event Found With This ID :( ##");
+               System.out.println("\t\t\t\t\t#####################################");
            }
         }catch (Exception e){
             e.printStackTrace();
@@ -133,17 +152,19 @@ public class EventsUI {
     public static  void searchEvent() {
         int choice = 0;
         do{
-            System.out.println("-------------------------------");
-            System.out.println("| 1 |     search By Type       |");
-            System.out.println("-------------------------------");
-            System.out.println("| 2 |     search By Date       |");
-            System.out.println("-------------------------------");
-            System.out.println("| 3 |     search By Location   |");
-            System.out.println("-------------------------------");
-            System.out.println("| 4 |          Exit            |");
-            System.out.println("-------------------------------");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t====================================");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t||    Search for Events Menu       ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t====================================");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|1|    Search By Type              ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|--------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|2|    Search By Date              ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|--------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|3|    Search By Location          ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|--------------------------------||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|4|    Exit                        ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t====================================");
             try {
-                System.out.print("Enter your choice: ");
+                System.out.print("\t\t\t\t\tEnter your choice: ");
                 choice = scanner.nextInt();
                 scanner.nextLine();
             }catch (Exception e){
@@ -162,7 +183,7 @@ public class EventsUI {
                 case 4:
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("\t\t\t\t\tInvalid choice. Please try again.");
                     break;
             }
 
@@ -170,45 +191,47 @@ public class EventsUI {
     }
 
     public static void searchEventByType() {
-        System.out.print("Enter Type to search: ");
+        System.out.print("\t\t\t\t\tEnter Type to search: ");
         String type = scanner.nextLine();
         try{
             List<Event> events = eventDAO.getEventsByType(type);
             if (!events.isEmpty()) {
-                System.out.println("List of Events filtered by Type:");
-                System.out.println("-------------------------------------------------");
+                System.out.println("\t\t\t\t\tList of Events filtered by Type:");
+                System.out.println("\t\t\t\t\t-------------------------------------------------");
                 for (Event event : events) {
-                    System.out.println("ID: " + event.getId());
-                    System.out.println("Title: "+ event.getTitle());
-                    System.out.println("Description: " + event.getDescription());
-                    System.out.println("Date: "+ event.getDate());
-                    System.out.println("Location: "+ event.getLocation());
-                    System.out.println("Type: "+ event.getType());
-                    System.out.println("-------------------------------------------------");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
                 }
             } else {
-                System.out.println("No events found.  :( ");
+                System.out.println("\t\t\t\t\t#########################");
+                System.out.println("\t\t\t\t\t##  No Event Found  :( ##");
+                System.out.println("\t\t\t\t\t#########################");
             }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
     public static void searchEventByDate() {
-        System.out.print("Enter Date to search: ");
+        System.out.print("\t\t\t\t\tEnter Date to search: ");
         String Date = scanner.nextLine();
         try{
             List<Event> events = eventDAO.getEventsByDate(Date);
             if (!events.isEmpty()) {
-                System.out.println("List of Events filtered by Date:");
-                System.out.println("-------------------------------------------------");
+                System.out.println("\t\t\t\t\tList of Events filtered by Date:");
+                System.out.println("\t\t\t\t\t-------------------------------------------------");
                 for (Event event : events) {
-                    System.out.println("ID: " + event.getId());
-                    System.out.println("Title: "+ event.getTitle());
-                    System.out.println("Description: " + event.getDescription());
-                    System.out.println("Date: "+ event.getDate());
-                    System.out.println("Location: "+ event.getLocation());
-                    System.out.println("Type: "+ event.getType());
-                    System.out.println("-------------------------------------------------");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
                 }
             } else {
                 System.out.println("No events found.  :( ");
@@ -218,24 +241,26 @@ public class EventsUI {
         }
     }
     public static void searchEventByLocation() {
-        System.out.print("Enter location to search: ");
+        System.out.print("\t\t\t\t\tEnter location to search: ");
         String location = scanner.nextLine();
         try{
             List<Event> events = eventDAO.getEventsByLocalisation(location);
             if (!events.isEmpty()) {
-                System.out.println("List of Events filtered by Localisation:");
-                System.out.println("-------------------------------------------------");
+                System.out.println("\t\t\t\t\tList of Events filtered by Localisation:");
+                System.out.println("\t\t\t\t\t-------------------------------------------------");
                 for (Event event : events) {
-                    System.out.println("ID: " + event.getId());
-                    System.out.println("Title: "+ event.getTitle());
-                    System.out.println("Description: " + event.getDescription());
-                    System.out.println("Date: "+ event.getDate());
-                    System.out.println("Location: "+ event.getLocation());
-                    System.out.println("Type: "+ event.getType());
-                    System.out.println("-------------------------------------------------");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
                 }
             } else {
-                System.out.println("No events found.  :( ");
+                System.out.println("\t\t\t\t\t#########################");
+                System.out.println("\t\t\t\t\t##  No Event Found  :( ##");
+                System.out.println("\t\t\t\t\t#########################");
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -243,63 +268,63 @@ public class EventsUI {
     }
 
     private static Event eventData() {
-        System.out.print("Enter Event ID: ");
+        System.out.print("\t\t\t\t\tEnter Event ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
         // Title Input and Validation
         String title;
         while (true) {
-            System.out.print("Enter Event title: ");
+            System.out.print("\t\t\t\t\tEnter Event title: ");
             title = scanner.nextLine();
             if (validateEvent.validateTitle(title)) {
                 break;
             }
-            System.out.println("Title not valid. Please enter a valid Title.");
+            System.out.println("\t\t\t\t\tTitle not valid. Please enter a valid Title.");
         }
 
         // Description Input and Validation
         String desc;
         while (true) {
-            System.out.print("Enter Event description: ");
+            System.out.print("\t\t\t\t\tEnter Event description: ");
             desc = scanner.nextLine();
             if (validateEvent.validateDescription(desc)) {
                 break;
             }
-            System.out.println("Description not valid. Please enter a valid Description.");
+            System.out.println("\t\t\t\t\tDescription not valid. Please enter a valid Description.");
         }
 
         // Location Input and Validation
         String location;
         while (true) {
-            System.out.print("Enter Event Location: ");
+            System.out.print("\t\t\t\t\tEnter Event Location: ");
             location = scanner.nextLine();
             if (validateEvent.validateLocation(location)) {
                 break;
             }
-            System.out.println("Location not valid. Please enter a valid Location.");
+            System.out.println("\t\t\t\t\tLocation not valid. Please enter a valid Location.");
         }
 
         // Date Input and Validation
         String date;
         while (true) {
-            System.out.print("Enter Event Date: ");
+            System.out.print("\t\t\t\t\tEnter Event Date: ");
             date = scanner.nextLine();
             if (validateEvent.validateDate(date)) {
                 break;
             }
-            System.out.println("Date not valid. Please enter a valid Date.");
+            System.out.println("\t\t\t\t\tDate not valid. Please enter a valid Date.");
         }
 
         // Type Input and Validation
         String type;
         while (true) {
-            System.out.print("Enter Event Type: ");
+            System.out.print("\t\t\t\t\tEnter Event Type: ");
             type = scanner.nextLine();
             if (validateEvent.isValidType(type)) {
                 break;
             }
-            System.out.println("Type not valid. Please enter a valid Type.");
+            System.out.println("\t\t\t\t\tType not valid. Please enter a valid Type.");
         }
 
         return new Event(id, title, desc, location, date, type);
