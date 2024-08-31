@@ -2,13 +2,16 @@ package com.EventKeeper.DAO;
 
 import com.EventKeeper.entity.Event;
 import com.EventKeeper.entity.Participant;
+import com.EventKeeper.entity.Registration;
+
+import java.util.List;
 
 public interface RegistrationDAO {
 
-    public void register(Participant participant, Event event);
+    public boolean register(Registration registration);
 
-    public void unregister(Participant participant, Event event);
+    public void unregister(int eventID, int participantID);
 
-    public void registration(Event event);
+    public List <Registration> registration(int participantID);
 
 }

@@ -1,11 +1,11 @@
 package com.EventKeeper.entity;
 
-public class registration {
+public class Registration {
     private final int id;
     private Event event;
     private Participant participant;
 
-    public registration(int id, Event event, Participant participant) {
+    public Registration(int id, Event event, Participant participant) {
         this.id = id;
         this.event = event;
         this.participant = participant;

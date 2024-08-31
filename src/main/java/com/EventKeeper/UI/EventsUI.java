@@ -2,16 +2,15 @@ package com.EventKeeper.UI;
 
 import com.EventKeeper.utility.ValidateEvent;
 import com.EventKeeper.DAO.EventDAO;
-import com.EventKeeper.DAO.Implementation.EventDaoImpl; // Ensure to import the correct implementation class
+import com.EventKeeper.DAO.Implementation.EventDaoImpl;
 import com.EventKeeper.entity.Event;
-
 import java.util.List;
 import java.util.Scanner;
 
 public class EventsUI {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final EventDAO eventDAO = new EventDaoImpl(); // Properly initialize eventDAO
-    private static final ValidateEvent validateEvent = new ValidateEvent(); // Initialize validateEvent
+    private static final EventDAO eventDAO = new EventDaoImpl();
+    private static final ValidateEvent validateEvent = new ValidateEvent();
 
     public static void run() {
         int choice = 0;
@@ -76,16 +75,7 @@ public class EventsUI {
             List<Event> events = eventDAO.getEvents();
             if (!events.isEmpty()) {
                 System.out.println("\t\t\t\t\tList of Events:");
-                System.out.println("\t\t\t\t\t-------------------------------------------------");
-                for (Event event : events) {
-                    System.out.println("\t\t\t\t\tID: " + event.getId());
-                    System.out.println("\t\t\t\t\tTitle: "+ event.getTitle());
-                    System.out.println("\t\t\t\t\tDescription: " + event.getDescription());
-                    System.out.println("\t\t\t\t\tDate: "+ event.getDate());
-                    System.out.println("\t\t\t\t\tLocation: "+ event.getLocation());
-                    System.out.println("\t\t\t\t\tType: "+ event.getType());
-                    System.out.println("\t\t\t\t\t-------------------------------------------------");
-                }
+               showEventsUI(events);
             } else {
                 System.out.println("\t\t\t\t\t###########################");
                 System.out.println("\t\t\t\t\t##   No events found :(  ##");
@@ -197,16 +187,6 @@ public class EventsUI {
             List<Event> events = eventDAO.getEventsByType(type);
             if (!events.isEmpty()) {
                 System.out.println("\t\t\t\t\tList of Events filtered by Type:");
-                System.out.println("\t\t\t\t\t-------------------------------------------------");
-                for (Event event : events) {
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
-                }
             } else {
                 System.out.println("\t\t\t\t\t#########################");
                 System.out.println("\t\t\t\t\t##  No Event Found  :( ##");
@@ -223,16 +203,7 @@ public class EventsUI {
             List<Event> events = eventDAO.getEventsByDate(Date);
             if (!events.isEmpty()) {
                 System.out.println("\t\t\t\t\tList of Events filtered by Date:");
-                System.out.println("\t\t\t\t\t-------------------------------------------------");
-                for (Event event : events) {
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
-                }
+               showEventsUI(events);
             } else {
                 System.out.println("No events found.  :( ");
             }
@@ -247,16 +218,7 @@ public class EventsUI {
             List<Event> events = eventDAO.getEventsByLocalisation(location);
             if (!events.isEmpty()) {
                 System.out.println("\t\t\t\t\tList of Events filtered by Localisation:");
-                System.out.println("\t\t\t\t\t-------------------------------------------------");
-                for (Event event : events) {
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
-                }
+                showEventsUI(events);
             } else {
                 System.out.println("\t\t\t\t\t#########################");
                 System.out.println("\t\t\t\t\t##  No Event Found  :( ##");
@@ -330,6 +292,19 @@ public class EventsUI {
         return new Event(id, title, desc, location, date, type);
     }
 
+
+    private static void showEventsUI(List<Event> events){
+        System.out.println("\t\t\t\t\t-------------------------------------------------");
+        for (Event event : events) {
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
+        }
+    }
 
     public static void main(String[] args) {
         EventsUI app = new EventsUI();
