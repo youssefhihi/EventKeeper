@@ -1,18 +1,16 @@
 package com.EventKeeper.entity;
-import com.EventKeeper.enums.type;
 
 
 public class Event {
-    private static int counter = 1;
     private final int id;
     private String title;
     private String description;
     private String location;
     private String date;
-    private type type;
+    private String type;
 
-    public Event(String title, String description, String location, String date, type type) {
-        this.id = counter++;
+    public Event(int id ,String title, String description, String location, String date, String type) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.location = location;
@@ -57,24 +55,12 @@ public class Event {
         this.date = date;
     }
 
-    public type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(type type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", location='" + location + '\'' +
-                ", date='" + date + '\'' +
-                ", type=" + type +
-                '}';
-    }
 }

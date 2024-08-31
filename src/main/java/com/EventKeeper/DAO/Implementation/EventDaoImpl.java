@@ -1,7 +1,6 @@
 package com.EventKeeper.DAO.Implementation;
 import com.EventKeeper.DAO.EventDAO;
 import com.EventKeeper.entity.Event;
-import com.EventKeeper.enums.type;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,21 +23,29 @@ public class EventDaoImpl implements EventDAO {
     }
 
     @Override
-    public void updateEvent(Event event) {
+    public boolean updateEvent(Event event) {
         try {
-            events.replace(event.getId(), event);
+            if ( events.containsKey(event.getId()) ) {
+                events.put(event.getId(), event);
+                return true;
+            }
         }catch ( Exception e ) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
-    public void deleteEvent(int id) {
+    public boolean deleteEvent(int id) {
         try {
-            events.remove(id);
+            if(events.containsKey(id)) {
+                events.remove(id);
+                return true;
+            }
         }catch ( Exception e ) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -53,11 +60,16 @@ public class EventDaoImpl implements EventDAO {
 
     @Override
     public List<Event> getEvents() {
-        return new ArrayList<>(events.values());
+        try {
+            return new ArrayList<>(events.values());
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
-    public List<Event> getEventsByType(type type) {
+    public List<Event> getEventsByType(String type) {
         try {
             return getEvents().stream().filter(e -> e.getType().equals(type)).collect(Collectors.toList());
         }catch ( Exception e ) {
