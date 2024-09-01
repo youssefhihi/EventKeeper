@@ -7,4 +7,5 @@ public interface ParticipantDAO {
     public boolean updateParticipant(Participant participant);
     public void deleteParticipant(int participantId);
     public List<Participant> getParticipants();
+    public Participant login(String username , String password);
 }

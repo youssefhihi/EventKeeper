@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 public class ParticipantDaoImpl implements ParticipantDAO {
@@ -22,6 +23,20 @@ public class ParticipantDaoImpl implements ParticipantDAO {
             return false;
         }
     }
+
+    public Participant login(String username, String password) {
+        try {
+            Optional<Participant> participantExist = participants.values().stream()
+                    .filter(p -> p.getUsername().equals(username) && p.getPassword().equals(password))
+                    .findFirst();
+    
+            return participantExist.orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; 
+    }
+    
 
     @Override
     public boolean addParticipant(Participant participant) {
