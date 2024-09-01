@@ -1,18 +1,22 @@
 package com.EventKeeper.UI;
 
 import java.util.Scanner;
+
+import com.EventKeeper.DAO.AdminDAO;
 import com.EventKeeper.DAO.ParticipantDAO;
 import com.EventKeeper.DAO.Implementation.ParticipantDaoImpl;
+import com.EventKeeper.UI.AdminUI.AdminUI;
 import com.EventKeeper.UI.ParticipantUI.RegistrationUI;
 import com.EventKeeper.entity.Admin;
 import com.EventKeeper.entity.Participant;
-import com.EventKeeper.entity.User;
 import com.EventKeeper.enums.role;
+import com.EventKeeper.DAO.Implementation.AdminDaoImpl;
 import com.EventKeeper.utility.ValidateUser;
 
 public class EventKeeper {
     private static Scanner scanner = new Scanner(System.in);
     private static ParticipantDAO participantDAO = new ParticipantDaoImpl();
+    private static AdminDAO adminDAO = new AdminDaoImpl();
     private RegistrationUI registrationUI;
     public static void run(){
         int choice = 0 ;
@@ -51,6 +55,10 @@ public class EventKeeper {
     public  void participantPart(Participant participantAuth){
         registrationUI = new RegistrationUI(participantAuth);
         registrationUI.run();
+    }
+    public  void adminPart(Admin adminAuth){
+        AdminUI adminUI = new AdminUI(adminAuth);
+        adminUI.run();
     }
 
 
@@ -96,19 +104,29 @@ public class EventKeeper {
 
         System.out.print("\t\t\t\t\tEnter Password: ");
         String password = scanner.nextLine();
-        // Admin admin = Admin.adminLogin(username, password);
-        Participant participant = participantDAO.login(username, password);     
-        if(participant != null){
+        Admin admin = adminDAO.login(username, password);
+        Participant participant = participantDAO.login(username, password);  
+        if (admin != null){
+            
+            System.out.println("\t\t\t\t\t#############################");
+            System.out.println("\t\t\t\t\t##      Welcome Admin   :) ##");
+            System.out.println("\t\t\t\t\t#############################");
+            EventKeeper eventKeeper = new EventKeeper();
+            eventKeeper.adminPart(admin);
+
+        }else if(participant != null){
+
             System.out.println("\t\t\t\t\t#############################");
             System.out.println("\t\t\t\t\t##  Login Successfully  :) ##");
             System.out.println("\t\t\t\t\t#############################");
             EventKeeper eventKeeper = new EventKeeper();
             eventKeeper.participantPart(participant);
+
         }else{
             System.out.println("\t\t\t\t\t########################################");
             System.out.println("\t\t\t\t\t##  Username or Password incorrect  :( ##");
-            System.out.println("\t\t\t\t\t#########################################");
-        }    
+            System.out.println("\t\t\t\t\t#########################################");    
+        }  
          
     }
 

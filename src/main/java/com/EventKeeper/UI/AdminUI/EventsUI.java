@@ -67,7 +67,7 @@ public class EventsUI {
                     System.out.println("\t\t\t\t\tInvalid choice. Please try again.");
                     break;
             }
-        } while (choice != 7);
+        } while (choice != 6);
     }
 
     public static void showEvents() {
@@ -187,6 +187,7 @@ public class EventsUI {
             List<Event> events = eventDAO.getEventsByType(type);
             if (!events.isEmpty()) {
                 System.out.println("\t\t\t\t\tList of Events filtered by Type:");
+                showEventsUI(events);
             } else {
                 System.out.println("\t\t\t\t\t#########################");
                 System.out.println("\t\t\t\t\t##  No Event Found  :( ##");
@@ -296,18 +297,15 @@ public class EventsUI {
     private static void showEventsUI(List<Event> events){
         System.out.println("\t\t\t\t\t-------------------------------------------------");
         for (Event event : events) {
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tID: " + event.getId());
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTitle: "+ event.getTitle());
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDescription: " + event.getDescription());
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDate: "+ event.getDate());
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLocation: "+ event.getLocation());
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tType: "+ event.getType());
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-------------------------------------------------");
+            System.out.println("\t\t\t\t\t\tID: " + event.getId());
+            System.out.println("\t\t\t\t\t\tTitle: "+ event.getTitle());
+            System.out.println("\t\t\t\t\t\tDescription: " + event.getDescription());
+            System.out.println("\t\t\t\t\t\tDate: "+ event.getDate());
+            System.out.println("\t\t\t\t\t\tLocation: "+ event.getLocation());
+            System.out.println("\t\t\t\t\t\tType: "+ event.getType());
+            System.out.println("\t\t\t\t\t-------------------------------------------------");
         }
     }
 
-    public static void main(String[] args) {
-        EventsUI app = new EventsUI();
-        app.run();
-    }
+   
 }

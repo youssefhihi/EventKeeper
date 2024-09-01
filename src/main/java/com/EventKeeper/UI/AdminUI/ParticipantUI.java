@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class ParticipantUI {
     private static Scanner scanner = new Scanner(System.in);
     private static ParticipantDAO participantDAO = new ParticipantDaoImpl();
-    private static final ValidateUser validateUser = new ValidateUser();
-
+    
     public  void run(){
         int choice = 0;
         do{

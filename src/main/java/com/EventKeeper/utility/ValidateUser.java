@@ -1,7 +1,5 @@
 package com.EventKeeper.utility;
 
-import com.EventKeeper.entity.Event;
-
 public class ValidateUser {
 
     public static boolean validateUsername(String username) {

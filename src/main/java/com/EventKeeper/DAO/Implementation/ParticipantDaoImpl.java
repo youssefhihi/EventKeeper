@@ -1,7 +1,6 @@
 package com.EventKeeper.DAO.Implementation;
 
 import com.EventKeeper.DAO.ParticipantDAO;
-import com.EventKeeper.entity.Event;
 import com.EventKeeper.entity.Participant;
 
 import java.util.ArrayList;

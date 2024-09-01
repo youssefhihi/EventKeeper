@@ -6,16 +6,14 @@ import com.EventKeeper.DAO.Implementation.RegistrationDaoImp;
 import com.EventKeeper.DAO.RegistrationDAO;
 import com.EventKeeper.entity.Event;
 import com.EventKeeper.entity.Participant;
-import com.EventKeeper.utility.ValidateUser;
-
 import java.util.List;
 import java.util.Scanner;
 
 public class RegistrationUI {
     private Participant participant;
-    private static Scanner scanner = new Scanner(System.in);
-    private static EventDAO eventDAO = new EventDaoImpl();
-    private static RegistrationDAO registrationDAO = new RegistrationDaoImp();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final EventDAO eventDAO = new EventDaoImpl();
+    private static final RegistrationDAO registrationDAO = new RegistrationDaoImp();
 
     public RegistrationUI(Participant participant){
         this.participant = participant;
