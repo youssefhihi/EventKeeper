@@ -26,7 +26,9 @@ public class ParticipantDaoImpl implements ParticipantDAO {
 
     public Participant login(String username, String password) {
         try {
+
             Optional<Participant> participantExist = participants.values().stream()
+                    .filter(p -> p.getUsername() != null && p.getPassword() != null) 
                     .filter(p -> p.getUsername().equals(username) && p.getPassword().equals(password))
                     .findFirst();
     
@@ -34,8 +36,9 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; 
+        return null;
     }
+    
     
 
     @Override

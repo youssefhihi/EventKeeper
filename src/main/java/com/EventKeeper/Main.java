@@ -1,5 +1,5 @@
 package com.EventKeeper;
-import com.EventKeeper.UI.AdminUI.EventsUI;
+import com.EventKeeper.UI.EventKeeper;
 
 
 public class Main {
@@ -20,6 +20,6 @@ public class Main {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t=========================");
 
         }*/
-        EventsUI.run();
+        EventKeeper.run();
     }
 }

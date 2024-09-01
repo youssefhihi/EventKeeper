@@ -37,7 +37,7 @@ public class RegistrationUI {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------||");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t|5|   display registered event    ||");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|6|            Exit               ||");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|6|            Logout             ||");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t====================================");
             try {
                 System.out.print("\t\t\t\t\tEnter your choice: ");

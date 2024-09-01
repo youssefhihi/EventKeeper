@@ -18,6 +18,7 @@ public class User {
     public User(int id, String username,String password, role role) {
         this.id = id;
         this.username = username;
+        this.password = password;
         this.role = role;
     }
 
