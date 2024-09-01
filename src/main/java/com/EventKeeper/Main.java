@@ -1,5 +1,5 @@
 package com.EventKeeper;
-import com.EventKeeper.UI.EventsUI;
+import com.EventKeeper.UI.AdminUI.EventsUI;
 
 
 public class Main {

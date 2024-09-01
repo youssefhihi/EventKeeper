@@ -1,6 +1,8 @@
 package com.EventKeeper.DAO.Implementation;
 
 import com.EventKeeper.DAO.RegistrationDAO;
+import com.EventKeeper.entity.Event;
+import com.EventKeeper.entity.Participant;
 import com.EventKeeper.entity.Registration;
 
 import java.util.HashMap;
@@ -11,13 +13,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class RegistrationDaoImp implements RegistrationDAO {
-
     private Map<Integer, Registration> registrations = new HashMap<>();
+    private int idCounter = 1;
 
     @Override
-    public boolean register(Registration registration) {
+    public boolean register(Event event, Participant participant) {
         try{
-            if(registrations.containsValue(registration)){
+            Registration registration = new Registration(idCounter++, event, participant);
+           boolean matched = registrations.values().stream()
+                    .anyMatch(reg -> reg.getEvent().equals(event) && reg.getParticipant().equals(participant));
+            if(matched){
                 return false;
             }else{
                 registrations.put(registration.getId(), registration);

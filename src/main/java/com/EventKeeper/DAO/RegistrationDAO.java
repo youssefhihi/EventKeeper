@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RegistrationDAO {
 
-    public boolean register(Registration registration);
+    public boolean register(Event event, Participant participant );
 
     public void unregister(int eventID, int participantID);
 

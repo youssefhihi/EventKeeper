@@ -1,4 +1,4 @@
-package com.EventKeeper.UI;
+package com.EventKeeper.UI.AdminUI;
 
 import com.EventKeeper.utility.ValidateEvent;
 import com.EventKeeper.DAO.EventDAO;

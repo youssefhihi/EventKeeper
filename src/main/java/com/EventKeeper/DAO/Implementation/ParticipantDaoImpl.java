@@ -24,35 +24,44 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public void addParticipant(Participant participant) {
+    public boolean addParticipant(Participant participant) {
         try{
             if (!isUsernameUnique(participant.getUsername())) {
                 System.out.println("Invalid participant: Username already exists.");
-                return;
+                return false;
+            }else{
+                participants.put(participant.getId(), participant);
+                return true;
             }
-            participants.put(participant.getId(), participant);
         }catch(Exception e){
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
-    public void updateParticipant(Participant participant) {
+    public boolean updateParticipant(Participant participant) {
         try{
             if (!isUsernameUnique(participant.getUsername())) {
                 System.out.println("Invalid participant: Username already exists.");
-                return;
+                return false;
+            }else {
+                if (participants.containsKey(participant.getId())) {
+                    participants.put(participant.getId(), participant);
+                    return true;
+                }
+                return false;
             }
-            participants.replace(participant.getId(), participant);
         }catch(Exception e){
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
-    public void deleteParticipant(Participant participant) {
+    public void deleteParticipant(int participantId) {
         try{
-            participants.remove(participant.getId());
+            participants.remove(participantId);
         }catch(Exception e){
             e.printStackTrace();
         }

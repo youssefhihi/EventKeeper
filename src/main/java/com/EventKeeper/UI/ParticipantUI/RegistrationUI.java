@@ -1,26 +1,23 @@
-package com.EventKeeper.UI;
+package com.EventKeeper.UI.ParticipantUI;
 
 import com.EventKeeper.DAO.EventDAO;
 import com.EventKeeper.DAO.Implementation.EventDaoImpl;
-import com.EventKeeper.DAO.Implementation.ParticipantDaoImpl;
 import com.EventKeeper.DAO.Implementation.RegistrationDaoImp;
-import com.EventKeeper.DAO.ParticipantDAO;
 import com.EventKeeper.DAO.RegistrationDAO;
 import com.EventKeeper.entity.Event;
 import com.EventKeeper.entity.Participant;
-import com.EventKeeper.entity.Registration;
 import com.EventKeeper.utility.ValidateUser;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class ParticipantUI {
+public class RegistrationUI {
     private Participant participant;
     private static Scanner scanner = new Scanner(System.in);
     private static EventDAO eventDAO = new EventDaoImpl();
     private static RegistrationDAO registrationDAO = new RegistrationDaoImp();
-    private static final ValidateUser validateUser = new ValidateUser();
-    public ParticipantUI(Participant participant){
+
+    public RegistrationUI(Participant participant){
         this.participant = participant;
     }
 
@@ -97,8 +94,7 @@ public class ParticipantUI {
             scanner.nextLine();
             Event event = eventDAO.getEvent(id);
             if (event != null) {
-               Registration registration = new Registration(0,event,this.participant);
-               boolean registred =  registrationDAO.register(registration);
+               boolean registred =  registrationDAO.register(event,this.participant);
                if (registred) {
                    System.out.println("\t\t\t\t\tSuccessfully registered to an event");
                }else{
