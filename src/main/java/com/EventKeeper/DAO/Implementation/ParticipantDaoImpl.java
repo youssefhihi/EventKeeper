@@ -54,7 +54,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
                 System.out.println("Invalid participant: Username already exists.");
                 return false;
             }else{
-                participants.put(participant.getId(), participant);
+                participants.put(participant.getParticipantID(), participant);
                 return true;
             }
         }catch(Exception e){
@@ -64,14 +64,14 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     }
 
     @Override
-    public boolean updateParticipant(Participant participant) {
+    public boolean updateParticipant(int id,Participant participant) {
         try{
             if (!isUsernameUnique(participant.getUsername())) {
                 System.out.println("Invalid participant: Username already exists.");
                 return false;
             }else {
-                if (participants.containsKey(participant.getId())) {
-                    participants.put(participant.getId(), participant);
+                if (participants.containsKey(id)) {
+                    participants.put(id, participant);
                     return true;
                 }
                 return false;

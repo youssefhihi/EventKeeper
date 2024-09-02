@@ -38,11 +38,11 @@ public class ParticipantUI {
             }
             switch (choice){
                 case 1:
-                    System.out.println("\t\t\t\t\tFetching all events...");
+                    System.out.println("\t\t\t\t\tFetching all Participants...");
                     showParticipant();
                     break;
                 case 2:
-                    System.out.println("\t\t\t\t\tSearching for an event...");
+                    System.out.println("\t\t\t\t\tSearching for an Participant...");
                     addParticipant();
                     break;
                 case 3:
@@ -66,7 +66,7 @@ public class ParticipantUI {
           if(!participants.isEmpty()){
               for(Participant participant : participants){
                   System.out.println("\t\t\t\t\t-------------------------------------------");
-                  System.out.println("\t\t\t\t\tID: " + participant.getId());
+                  System.out.println("\t\t\t\t\tID: " + participant.getParticipantID());
                   System.out.println("\t\t\t\t\tUsername: " + participant.getUsername());
                   System.out.println("\t\t\t\t\t-------------------------------------------");
               }
@@ -95,8 +95,21 @@ public class ParticipantUI {
     }
     private void updateParticipant(){
         System.out.println("\t\t\t\t\tUpdate an existing participant...");
+        int id;
+        while(true){
+            try {
+                System.out.print("\t\t\t\t\tEnter Participent ID: ");
+                 id = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            }catch (Exception e){
+                scanner.nextLine();
+            }
+        }
+
         Participant participant = ParticipantData();
-        boolean updated = participantDAO.updateParticipant(participant);
+
+        boolean updated = participantDAO.updateParticipant(id, participant);
         if (updated){
             System.out.println("\t\t\t\t\t#########################################");
             System.out.println("\t\t\t\t\t##  Participant updated Successfully  :) ##");
@@ -116,10 +129,6 @@ public class ParticipantUI {
     }
 
     private Participant ParticipantData(){
-        System.out.print("\t\t\t\t\tEnter Participant ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
         // Username Input and Validation
         String username;
         while (true) {
@@ -140,6 +149,6 @@ public class ParticipantUI {
             }
             System.out.println("\t\t\t\t\tPassword not valid. Please enter a valid password.");
         }
-        return new Participant(id,username, password, role.participant);
+        return new Participant(username, password, role.participant);
     }
 }

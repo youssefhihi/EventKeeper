@@ -13,12 +13,19 @@ import java.util.stream.Collectors;
 
 public class RegistrationDaoImp implements RegistrationDAO {
     private Map<Integer, Registration> registrations = new HashMap<>();
-    private int idCounter = 1;
+    private static RegistrationDaoImp instance;
+
+    public static RegistrationDaoImp getInstance() {
+        if (instance == null) {
+            instance = new RegistrationDaoImp();
+        }
+        return instance;
+    }
 
     @Override
     public boolean register(Event event, Participant participant) {
         try{
-            Registration registration = new Registration(idCounter++, event, participant);
+            Registration registration = new Registration( event, participant);
            boolean matched = registrations.values().stream()
                     .anyMatch(reg -> reg.getEvent().equals(event) && reg.getParticipant().equals(participant));
             if(matched){
@@ -37,7 +44,7 @@ public class RegistrationDaoImp implements RegistrationDAO {
     public void unregister(int eventID, int participantID){
         try{
            Optional<Registration> registrationRem = registrations.values().stream()
-                        .filter(r -> r.getParticipant().getId() == participantID && r.getEvent().getId() == eventID)
+                        .filter(r -> r.getParticipant().getParticipantID() == participantID && r.getEvent().getId() == eventID)
                         .findFirst();
             registrationRem.ifPresent(registration -> {
                 registrations.remove(registration.getId());
@@ -51,7 +58,7 @@ public class RegistrationDaoImp implements RegistrationDAO {
     public List <Event> registration(int participantID){
         try{
             return registrations.values().stream()
-                            .filter(r -> r.getParticipant().getId() == participantID)
+                            .filter(r -> r.getParticipant().getParticipantID() == participantID)
                             .map(r -> r.getEvent())
                             .collect(Collectors.toList());
         }catch(Exception e){
@@ -60,6 +67,30 @@ public class RegistrationDaoImp implements RegistrationDAO {
         return null;
     }
 
+    @Override
+    public List <Event> getReportOfParticipant(String username){
+        try{
+            return registrations.values().stream()
+                            .filter(r -> r.getParticipant().getUsername().equals(username))
+                            .map(r -> r.getEvent())
+                            .collect(Collectors.toList());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
+    @Override
+    public List <Participant> getReportOfEvent(int eventID){
+        try{
+            return registrations.values().stream()
+                            .filter(r -> r.getEvent().getId() == eventID)
+                            .map(r -> r.getParticipant())
+                            .collect(Collectors.toList());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

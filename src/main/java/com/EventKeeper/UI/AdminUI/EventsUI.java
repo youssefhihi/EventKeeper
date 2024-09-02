@@ -105,7 +105,18 @@ public class EventsUI {
     public static void updateEvent() {
         Event event = eventData();
         try {
-            boolean updated = eventDAO.updateEvent(event);
+            int id;
+            while(true){
+                try {
+                    System.out.print("\t\t\t\t\tEnter Event ID: ");
+                     id = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                }catch (Exception e){
+                    scanner.nextLine();
+                }
+            }   
+            boolean updated = eventDAO.updateEvent(id,event);
             if (updated){
                 System.out.println("\t\t\t\t\t###################################");
                 System.out.println("\t\t\t\t\t##  Event Added Successfully :)  ##");
@@ -231,18 +242,7 @@ public class EventsUI {
     }
 
     private static Event eventData() {
-        int id;
-        while(true){
-            try {
-                System.out.print("\t\t\t\t\tEnter Event ID: ");
-                 id = scanner.nextInt();
-                scanner.nextLine();
-                break;
-            }catch (Exception e){
-                scanner.nextLine();
-            }
-        }
-
+       
         // Title Input and Validation
         String title;
         while (true) {
@@ -298,7 +298,7 @@ public class EventsUI {
             System.out.println("\t\t\t\t\tType not valid. Please enter a valid Type.");
         }
 
-        return new Event(id, title, desc, location, date, type);
+        return new Event(title, desc, location, date, type);
     }
 
 

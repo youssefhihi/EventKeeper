@@ -13,7 +13,7 @@ public class RegistrationUI {
     private Participant participant;
     private static final Scanner scanner = new Scanner(System.in);
     private static final EventDAO eventDAO = EventDaoImpl.getInstance();
-    private static final RegistrationDAO registrationDAO = new RegistrationDaoImp();
+    private static final RegistrationDAO registrationDAO = RegistrationDaoImp.getInstance();
 
     public RegistrationUI(Participant participant){
         this.participant = participant;
@@ -112,7 +112,7 @@ public class RegistrationUI {
             scanner.nextLine();
             Event event = eventDAO.getEvent(id);
             if (event != null) {
-                registrationDAO.unregister(event.getId(),this.participant.getId());
+                registrationDAO.unregister(event.getId(),this.participant.getParticipantID());
             }else{
                 System.out.println("\t\t\t\t\t######################################");
                 System.out.println("\t\t\t\t\t##  No Event Found with this ID  :( ##");
@@ -121,7 +121,7 @@ public class RegistrationUI {
         }
 
         public void displayRegisteredEvents(){
-            List<Event> events = registrationDAO.registration(this.participant.getId());
+            List<Event> events = registrationDAO.registration(this.participant.getParticipantID());
             if (!events.isEmpty()) {
                 System.out.println("\t\t\t\t\tList of Registered Events:");
                 showEventsUI(events);

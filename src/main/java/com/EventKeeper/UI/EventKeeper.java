@@ -63,9 +63,6 @@ public class EventKeeper {
 
 
     public static void createAccount(){
-        System.out.print("\t\t\t\t\tEnter Participant ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
         String username;
         while (true) {
             System.out.print("\t\t\t\t\tEnter Username: ");
@@ -84,7 +81,7 @@ public class EventKeeper {
             }
             System.out.println("\t\t\t\t\tPassword not valid. Please enter a valid password.");
         }
-        Participant participant = new Participant(id,username, password, role.participant);
+        Participant participant = new Participant(username, password, role.participant);
         boolean added = participantDAO.addParticipant(participant);
         if (added){
             System.out.println("\t\t\t\t\t############################################");

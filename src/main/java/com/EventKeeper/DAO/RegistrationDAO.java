@@ -13,4 +13,7 @@ public interface RegistrationDAO {
 
     public List <Event> registration(int participantID);
 
+    public List <Event> getReportOfParticipant(String username);
+
+    public List <Participant> getReportOfEvent(int eventID);
 }

@@ -19,38 +19,23 @@ public class EventDaoImpl implements EventDAO {
         }
         return instance;
     }
-    private boolean isIdUnique(int id){
-        try{
-           return  events.values().stream()
-                    .noneMatch(event -> event.getId() == id);
-        }catch(Exception e){
-            return false;
-        }
-    }
     
     @Override
     public void addEvent(Event event) {
-        try {
-            if (!isIdUnique(event.getId())) {
-                System.out.println("Invalid event: ID already exists.");
-                return;
-            }else{
-            if (!events.containsKey(event.getId())) {
-                events.put(event.getId(), event);
-            }else{
-                System.out.println("Invalid event: ID already exists.");
-            }
-            }
+        try {     
+           
+            events.put(event.getId(), event);
+
         }catch (Exception e ) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public boolean updateEvent(Event event) {
+    public boolean updateEvent(int id,Event event) {
         try {
-            if ( events.containsKey(event.getId()) ) {
-                events.put(event.getId(), event);
+            if ( events.containsKey(id) ) {
+                events.put(id, event);
                 return true;
             }
         }catch ( Exception e ) {

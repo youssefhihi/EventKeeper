@@ -2,6 +2,7 @@ package com.EventKeeper.entity;
 
 
 public class Event {
+    private static int uniqueID =0;
     private final int id;
     private String title;
     private String description;
@@ -9,8 +10,8 @@ public class Event {
     private String date;
     private String type;
 
-    public Event(int id ,String title, String description, String location, String date, String type) {
-        this.id = id;
+    public Event(String title, String description, String location, String date, String type) {
+        this.id = uniqueID++;  
         this.title = title;
         this.description = description;
         this.location = location;

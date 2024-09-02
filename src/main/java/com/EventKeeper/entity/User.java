@@ -2,21 +2,19 @@ package com.EventKeeper.entity;
 import com.EventKeeper.enums.role;
 
 public class User {
-    private int id;
+    private static int uniqueID = 0;
+    private int userID;
     private String username;
     private String password;
     private role role;
 
-    public int getId() {
-        return id;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User(int id, String username,String password, role role) {
-        this.id = id;
+  
+    public User(String username,String password, role role) {
+        this.userID = uniqueID++;
         this.username = username;
         this.password = password;
         this.role = role;
