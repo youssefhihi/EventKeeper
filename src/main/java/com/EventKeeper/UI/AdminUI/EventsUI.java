@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class EventsUI {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final EventDAO eventDAO = new EventDaoImpl();
+    private static final EventDAO eventDAO = EventDaoImpl.getInstance();
     private static final ValidateEvent validateEvent = new ValidateEvent();
 
     public static void run() {
@@ -231,9 +231,17 @@ public class EventsUI {
     }
 
     private static Event eventData() {
-        System.out.print("\t\t\t\t\tEnter Event ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id;
+        while(true){
+            try {
+                System.out.print("\t\t\t\t\tEnter Event ID: ");
+                 id = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            }catch (Exception e){
+                scanner.nextLine();
+            }
+        }
 
         // Title Input and Validation
         String title;

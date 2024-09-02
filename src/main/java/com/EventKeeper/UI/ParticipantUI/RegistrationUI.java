@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class RegistrationUI {
     private Participant participant;
     private static final Scanner scanner = new Scanner(System.in);
-    private static final EventDAO eventDAO = new EventDaoImpl();
+    private static final EventDAO eventDAO = EventDaoImpl.getInstance();
     private static final RegistrationDAO registrationDAO = new RegistrationDaoImp();
 
     public RegistrationUI(Participant participant){
@@ -57,8 +57,10 @@ public class RegistrationUI {
                     registerToEvent();
                     break;
                 case 4:
+                    unregisterFromEvent();
                     break;
                 case 5:
+                    displayRegisteredEvents();
                     break;
                 case 6:
                     break;
@@ -115,6 +117,18 @@ public class RegistrationUI {
                 System.out.println("\t\t\t\t\t######################################");
                 System.out.println("\t\t\t\t\t##  No Event Found with this ID  :( ##");
                 System.out.println("\t\t\t\t\t######################################");
+            }
+        }
+
+        public void displayRegisteredEvents(){
+            List<Event> events = registrationDAO.registration(this.participant.getId());
+            if (!events.isEmpty()) {
+                System.out.println("\t\t\t\t\tList of Registered Events:");
+                showEventsUI(events);
+            } else {
+                System.out.println("\t\t\t\t\t############################################");
+                System.out.println("\t\t\t\t\t##  You have not registered any event  :( ##");
+                System.out.println("\t\t\t\t\t############################################");
             }
         }
 

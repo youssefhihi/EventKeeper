@@ -48,9 +48,12 @@ public class RegistrationDaoImp implements RegistrationDAO {
     }
 
     @Override
-    public List <Registration> registration(int participantID){
+    public List <Event> registration(int participantID){
         try{
-             return registrations.values().stream().filter(r -> r.getParticipant().getId() == participantID).collect(Collectors.toList());
+            return registrations.values().stream()
+                            .filter(r -> r.getParticipant().getId() == participantID)
+                            .map(r -> r.getEvent())
+                            .collect(Collectors.toList());
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -11,12 +11,36 @@ import java.util.stream.Collectors;
 public class EventDaoImpl implements EventDAO {
 
     private Map<Integer, Event> events = new HashMap<>();
+    private static EventDaoImpl instance; 
 
-
+    public static EventDaoImpl getInstance() {
+        if (instance == null) {
+            instance = new EventDaoImpl();
+        }
+        return instance;
+    }
+    private boolean isIdUnique(int id){
+        try{
+           return  events.values().stream()
+                    .noneMatch(event -> event.getId() == id);
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
     @Override
     public void addEvent(Event event) {
         try {
-            events.put(event.getId(), event);
+            if (!isIdUnique(event.getId())) {
+                System.out.println("Invalid event: ID already exists.");
+                return;
+            }else{
+            if (!events.containsKey(event.getId())) {
+                events.put(event.getId(), event);
+            }else{
+                System.out.println("Invalid event: ID already exists.");
+            }
+            }
         }catch (Exception e ) {
             e.printStackTrace();
         }

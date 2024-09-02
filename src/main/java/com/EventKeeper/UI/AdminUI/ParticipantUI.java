@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ParticipantUI {
     private static Scanner scanner = new Scanner(System.in);
-    private static ParticipantDAO participantDAO = new ParticipantDaoImpl();
+    private static ParticipantDAO participantDAO = ParticipantDaoImpl.getInstance();
     
     public  void run(){
         int choice = 0;

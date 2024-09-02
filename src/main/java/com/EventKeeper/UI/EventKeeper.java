@@ -15,7 +15,7 @@ import com.EventKeeper.utility.ValidateUser;
 
 public class EventKeeper {
     private static Scanner scanner = new Scanner(System.in);
-    private static ParticipantDAO participantDAO = new ParticipantDaoImpl();
+    private static ParticipantDAO participantDAO = ParticipantDaoImpl.getInstance();
     private static AdminDAO adminDAO = new AdminDaoImpl();
     private RegistrationUI registrationUI;
     public static void run(){

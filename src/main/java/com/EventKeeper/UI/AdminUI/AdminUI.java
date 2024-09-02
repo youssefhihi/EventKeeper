@@ -15,7 +15,7 @@ public class AdminUI {
         int choice = 0;
 
         do {
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t============================================");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t==========================================");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t||  Welcome "+this.admin.getUsername()+" To Admin Management   ||");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t==========================================");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t|1|           Events Management         ||");

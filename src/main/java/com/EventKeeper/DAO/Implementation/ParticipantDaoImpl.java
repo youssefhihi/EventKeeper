@@ -11,9 +11,16 @@ import java.util.Optional;
 
 
 public class ParticipantDaoImpl implements ParticipantDAO {
-
+    private static ParticipantDaoImpl instance;
     private Map<Integer, Participant> participants = new HashMap<>();
 
+
+    public static ParticipantDaoImpl getInstance() {
+        if (instance == null) {
+            instance = new ParticipantDaoImpl();
+        }
+        return instance;
+    }
     private boolean isUsernameUnique(String username){
         try{
            return  participants.values().stream()
