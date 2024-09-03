@@ -16,21 +16,22 @@ public class ParticipantUI {
     public  void run(){
         int choice = 0;
         do{
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t========================================");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|| Welcome To Participants Management ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t========================================");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|1|       Get All Participants        ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-----------------------------------||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|2|        Add a participant          ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-----------------------------------||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|3|      Update a participant         ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-----------------------------------||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|4|      Delete a participant         ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-----------------------------------||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|5|            Exit                   ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t========================================");
+            System.out.println("╔═══════════════════════════════════════════════╗");
+            System.out.println("║        Welcome To Participants Management     ║");
+            System.out.println("╠═══════════════════════════════════════════════╣");
+            System.out.println("║  1  │  Get All Participants                   ║");
+            System.out.println("╠─────┼─────────────────────────────────────────╣");
+            System.out.println("║  2  │  Add a participant                      ║");
+            System.out.println("╠─────┼─────────────────────────────────────────╣");
+            System.out.println("║  3  │  Update a participant                   ║");
+            System.out.println("╠─────┼─────────────────────────────────────────╣");
+            System.out.println("║  4  │  Delete a participant                   ║");
+            System.out.println("╠─────┼─────────────────────────────────────────╣");
+            System.out.println("║  5  │  Exit                                   ║");
+            System.out.println("╚═══════════════════════════════════════════════╝");
+            
             try {
-                System.out.print("\t\t\t\t\tEnter your choice: ");
+                System.out.print("~~~> Please select an option: ");
                 choice = scanner.nextInt();
                 scanner.nextLine();
             }catch (Exception e){
@@ -38,67 +39,76 @@ public class ParticipantUI {
             }
             switch (choice){
                 case 1:
-                    System.out.println("\t\t\t\t\tFetching all Participants...");
+                    showLoading("Fetching all Participants");
                     showParticipant();
                     break;
                 case 2:
-                    System.out.println("\t\t\t\t\tSearching for an Participant...");
+                    showLoading("Adding for an Participant");
                     addParticipant();
                     break;
                 case 3:
+                    showLoading("Updating an Participant");
                     updateParticipant();
                     break;
                 case 4:
+                    showLoading("Deleting an Participant");
                     deleteParticipant();
                     break;
                 case 5:
-                    System.out.println("\t\t\t\t\tExiting...");
+                    showLoading("Exiting");
                     break;
                 default:
-                    System.out.println("\t\t\t\t\tInvalid choice. Please try again.");
+                    System.out.println("[ERROR] Invalid choice. Please try again.");
             }
         }while(choice != 5);
     }
 
-    private void showParticipant(){
-        try{
-          List<Participant> participants = participantDAO.getParticipants();
-          if(!participants.isEmpty()){
-              for(Participant participant : participants){
-                  System.out.println("\t\t\t\t\t-------------------------------------------");
-                  System.out.println("\t\t\t\t\tID: " + participant.getParticipantID());
-                  System.out.println("\t\t\t\t\tUsername: " + participant.getUsername());
-                  System.out.println("\t\t\t\t\t-------------------------------------------");
-              }
-          }else{
-              System.out.println("\t\t\t\t\tNo Participants Found");
-          }
-        }catch (Exception e){
+    private void showParticipant() {
+        try {
+            List<Participant> participants = participantDAO.getParticipants();
+            
+            if (!participants.isEmpty()) {
+                System.out.println("╔══════════════════════════════════════════════════════════╗");
+                System.out.println("║                   List of Participants                   ║");
+                System.out.println("╚══════════════════════════════════════════════════════════╝");
+                for (Participant participant : participants) {
+                    System.out.println("╔════════════════════════════════════════════════════════╗");
+                    System.out.println("║  Participant ID :  "+ participant.getParticipantID());
+                    System.out.println("║  Username :  " + participant.getUsername());
+                    System.out.println("╚════════════════════════════════════════════════════════╝");
+                    System.out.println(); 
+                }
+            } else {
+                System.out.println("╔════════════════════════════════════════╗");
+                System.out.println("║   [INFO]    No Participants Found      ║");
+                System.out.println("╚════════════════════════════════════════╝");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
 
     private void addParticipant(){
-        System.out.println("\t\t\t\t\tAdding a new participant...");
         Participant participant = ParticipantData();
         boolean added = participantDAO.addParticipant(participant);
         if (added){
-            System.out.println("\t\t\t\t\t#########################################");
-            System.out.println("\t\t\t\t\t##  Participant Added Successfully  :) ##");
-            System.out.println("\t\t\t\t\t#########################################");
+            System.out.println("╔═════════════════════════════════════════════════════╗");
+            System.out.println("║  [SUCCESS]    Participant Added  Successfully! :)   ║");
+            System.out.println("╚═════════════════════════════════════════════════════╝");
+            
         }else{
-            System.out.println("\t\t\t\t\t##################################");
-            System.out.println("\t\t\t\t\t##  Username already exists  :( ##");
-            System.out.println("\t\t\t\t\t##################################");
+            System.out.println("╔═════════════════════════════════════════╗");
+            System.out.println("║   [ERROR]   username already exists     ║");
+            System.out.println("╚═════════════════════════════════════════╝");
         }
 
     }
     private void updateParticipant(){
-        System.out.println("\t\t\t\t\tUpdate an existing participant...");
         int id;
         while(true){
             try {
-                System.out.print("\t\t\t\t\tEnter Participent ID: ");
+                System.out.print("~~~> 	Enter Participant ID: ");
                  id = scanner.nextInt();
                 scanner.nextLine();
                 break;
@@ -111,18 +121,17 @@ public class ParticipantUI {
 
         boolean updated = participantDAO.updateParticipant(id, participant);
         if (updated){
-            System.out.println("\t\t\t\t\t#########################################");
-            System.out.println("\t\t\t\t\t##  Participant updated Successfully  :) ##");
-            System.out.println("\t\t\t\t\t#########################################");
+            System.out.println("╔════════════════════════════════════════════════════╗");
+            System.out.println("║  [SUCCESS]    Participant Updated  Successfully    ║");
+            System.out.println("╚════════════════════════════════════════════════════╝");
         }else{
-            System.out.println("\t\t\t\t\t###################################################################");
-            System.out.println("\t\t\t\t\t##  Username already exists OR ID participant does not exist  :( ##");
-            System.out.println("\t\t\t\t\t###################################################################");
+            System.out.println("╔═════════════════════════════════════════╗");
+            System.out.println("║   [ERROR]   Username OR ID Invalid      ║");
+            System.out.println("╚═════════════════════════════════════════╝");
         }
     }
     private void deleteParticipant(){
-        System.out.println("\t\t\t\t\tDeleting an existing participant...");
-        System.out.print("\t\t\t\t\tEnter Participant ID: ");
+        System.out.print("~~~> 	Enter Participant ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
         participantDAO.deleteParticipant(id);
@@ -132,23 +141,36 @@ public class ParticipantUI {
         // Username Input and Validation
         String username;
         while (true) {
-            System.out.print("\t\t\t\t\tEnter Event title: ");
+            System.out.print("~~~> 	Enter Username: ");
             username = scanner.nextLine();
             if (ValidateUser.validateUsername(username)) {
                 break;
             }
-            System.out.println("\t\t\t\t\tUsername not valid. Please enter a valid username.");
+            System.out.println("[Error] Username not valid. Please enter a valid username.");
         }
 
         String password;
         while (true) {
-            System.out.print("\t\t\t\t\tEnter Password: ");
+            System.out.print("~~~> 	Enter Password: ");
             password = scanner.nextLine();
             if (ValidateUser.validatePassword(password)) {
                 break;
             }
-            System.out.println("\t\t\t\t\tPassword not valid. Please enter a valid password.");
+            System.out.println("[Error] Password not valid. Please enter a valid password.");
         }
         return new Participant(username, password, role.participant);
+    }
+
+    public static void showLoading(String message) {
+        System.out.print(message);
+        try {
+            for (int i = 0; i < 3; i++) {
+                Thread.sleep(600);
+                System.out.print(".");
+            }
+            System.out.println();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

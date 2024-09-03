@@ -22,8 +22,8 @@ public class RegistrationUI {
     public  void run(){
         int choice = 0;
         do{
-            System.out.println("╔═══════════════════════════════════════════════════╗");
-            System.out.println("   Welcome " + this.participant.getUsername() + "!"    );
+            System.out.println("╔══════════════════════════════════════════════════╗");
+            System.out.println("            Welcome " + this.participant.getUsername() + "!"    );
             System.out.println("╠══════════════════════════════════════════════════╣");
             System.out.println("║  1  │  Get All Events                            ║");
             System.out.println("╠─────┼────────────────────────────────────────────╣");

@@ -15,17 +15,18 @@ public class AdminUI {
         int choice = 0;
 
         do {
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t==========================================");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t||  Welcome "+this.admin.getUsername()+" To Admin Management   ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t==========================================");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|1|           Events Management         ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------------||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|2|        Participants Management      ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|-|-------------------------------------||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t|3|                Logout               ||");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t==========================================");
+            System.out.println("╔══════════════════════════════════════════════════════════════════╗");
+            System.out.println("              Welcome " + this.admin.getUsername() + " To Admin Management    ");
+            System.out.println("╠══════════════════════════════════════════════════════════════════╣");
+            System.out.println("║ 1. Events Management                                             ║");
+            System.out.println("╠──────────────────────────────────────────────────────────────────╣");
+            System.out.println("║ 2. Participants Management                                       ║");
+            System.out.println("╠──────────────────────────────────────────────────────────────────╣");
+            System.out.println("║ 3. Logout                                                        ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════╝");
+            
             try {
-                System.out.print("\t\t\t\t\tEnter your choice: ");
+                System.out.print("~~~> Please select an option: ");
                 choice = scanner.nextInt();
                 scanner.nextLine();
             } catch (Exception e) {
@@ -34,21 +35,36 @@ public class AdminUI {
 
             switch (choice) {
                 case 1:
+                    showLoading("Events Management");
                     EventsUI.run();
                     break;
                 case 2:
+                    showLoading("Participants Management");
                     participantUI.run();
                     break;
                 case 3:
-                    System.out.println("\t\t\t\t\tLogging out...");
+                    showLoading("Logging Out");
                     break;
                 default:
-                    System.out.println("\t\t\t\t\tInvalid choice. Please try again.");
+                    System.out.println("[Error] Invalid choice. Please try again.");
                     break;
             }
         } while (choice != 3);
     }
 
+
+    public static void showLoading(String message) {
+        System.out.print(message);
+        try {
+            for (int i = 0; i < 3; i++) {
+                Thread.sleep(600);
+                System.out.print(".");
+            }
+            System.out.println();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     
 }
