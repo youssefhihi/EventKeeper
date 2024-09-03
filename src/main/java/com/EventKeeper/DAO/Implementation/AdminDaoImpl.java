@@ -1,7 +1,7 @@
 package com.EventKeeper.DAO.Implementation;
+
 import com.EventKeeper.entity.Admin;
-import com.EventKeeper.entity.Event;
-import com.EventKeeper.entity.Participant;
+import com.EventKeeper.entity.Registration;
 import com.EventKeeper.enums.role;
 
 import java.util.List;
@@ -31,15 +31,13 @@ public class AdminDaoImpl implements AdminDAO {
     }
 
     @Override
-    public List<Event> getReportOfParticipant(String username) {
-        List<Event> events = registrationDAO.getReportOfParticipant(username);
-         return events;
+    public List<Registration> getReportOfParticipant(String username) {
+       return registrationDAO.getReportOfParticipant(username);
     }
 
     @Override
-    public List<Participant> getReportOfEvent(int eventID) {
-        List<Participant> participants = registrationDAO.getReportOfEvent(eventID);
-         return participants;
+    public List <Registration>  getReportOfEvent(int eventID) {
+         return registrationDAO.getReportOfEvent(eventID);
     }
     
 }

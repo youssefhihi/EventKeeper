@@ -22,7 +22,9 @@ public class AdminUI {
             System.out.println("╠──────────────────────────────────────────────────────────────────╣");
             System.out.println("║ 2. Participants Management                                       ║");
             System.out.println("╠──────────────────────────────────────────────────────────────────╣");
-            System.out.println("║ 3. Logout                                                        ║");
+            System.out.println("║ 3. Reports Management                                            ║");
+            System.out.println("╠──────────────────────────────────────────────────────────────────╣");
+            System.out.println("║ 4. Logout                                                        ║");
             System.out.println("╚══════════════════════════════════════════════════════════════════╝");
             
             try {
@@ -43,13 +45,17 @@ public class AdminUI {
                     participantUI.run();
                     break;
                 case 3:
+                    showLoading("Reports Management");
+                    Reports.run();
+                    break;
+                case 4:
                     showLoading("Logging Out");
                     break;
                 default:
                     System.out.println("[Error] Invalid choice. Please try again.");
                     break;
             }
-        } while (choice != 3);
+        } while (choice != 4);
     }
 
 

@@ -2,6 +2,7 @@ package com.EventKeeper.DAO;
 
 import com.EventKeeper.entity.Event;
 import com.EventKeeper.entity.Participant;
+import com.EventKeeper.entity.Registration;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface RegistrationDAO {
 
     public List <Event> registration(int participantID);
 
-    public List <Event> getReportOfParticipant(String username);
+    public List <Registration> getReportOfParticipant(String username);
 
-    public List <Participant> getReportOfEvent(int eventID);
+    public List <Registration> getReportOfEvent(int eventID);
 }

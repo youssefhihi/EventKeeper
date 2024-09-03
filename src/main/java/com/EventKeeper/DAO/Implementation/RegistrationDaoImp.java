@@ -68,11 +68,10 @@ public class RegistrationDaoImp implements RegistrationDAO {
     }
 
     @Override
-    public List <Event> getReportOfParticipant(String username){
+    public List <Registration> getReportOfParticipant(String username){
         try{
             return registrations.values().stream()
                             .filter(r -> r.getParticipant().getUsername().equals(username))
-                            .map(r -> r.getEvent())
                             .collect(Collectors.toList());
         }catch(Exception e){
             e.printStackTrace();
@@ -81,11 +80,10 @@ public class RegistrationDaoImp implements RegistrationDAO {
     }
 
     @Override
-    public List <Participant> getReportOfEvent(int eventID){
+    public List <Registration> getReportOfEvent(int eventID){
         try{
             return registrations.values().stream()
                             .filter(r -> r.getEvent().getId() == eventID)
-                            .map(r -> r.getParticipant())
                             .collect(Collectors.toList());
         }catch(Exception e){
             e.printStackTrace();
