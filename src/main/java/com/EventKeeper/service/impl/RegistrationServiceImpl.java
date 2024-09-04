@@ -41,6 +41,10 @@ public class RegistrationServiceImpl  implements RegistrationService{
   public List <Registration> getReportOfEvent(int eventID) {
     return registrationDAO.getReportOfEvent(eventID);
   }
+  @Override
+  public List <Participant> getListOfParticpant(int eventID) {
+    return registrationDAO.getListOfParticpant(eventID);
+  }
 
     
 }

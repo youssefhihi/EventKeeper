@@ -13,6 +13,13 @@ import java.util.Scanner;
 public class ParticipantUI {
     private static Scanner scanner = new Scanner(System.in);
     private static ParticipantService participantService = new ParticipantServiceImpl();
+    /**
+     * Runs the participant management system, providing a menu for the Admin to 
+     * interact with and perform various operations such as getting all participants, 
+     * adding, updating, and deleting participants.
+     *
+     * @return none
+     */
     public  void run(){
         int choice = 0;
         do{

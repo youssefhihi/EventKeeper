@@ -8,9 +8,9 @@ import com.EventKeeper.entity.Registration;
 
 public interface AdminDAO {
 
-    public Admin login(String username, String password);
+     Admin login(String username, String password);
 
-    public List <Registration> getReportOfParticipant(String username);
-    public List <Registration> getReportOfEvent(int eventID);
+     List <Registration> getReportOfParticipant(String username);
+     List <Registration> getReportOfEvent(int eventID);
     
 } 

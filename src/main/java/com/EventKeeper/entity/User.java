@@ -40,6 +40,11 @@ public class User {
         return role;
     }
 
+    /**
+     * Sets the role of the user.
+     *
+     * @param role 
+     */
     public void setRole(role role) {
         this.role = role;
     }

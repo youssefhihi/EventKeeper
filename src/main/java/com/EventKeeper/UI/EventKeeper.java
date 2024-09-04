@@ -18,6 +18,14 @@ public class EventKeeper {
     private static ParticipantService participantService = new ParticipantServiceImpl();
     private static AdminDAO adminDAO = new AdminDaoImpl();
     private RegistrationUI registrationUI;
+    /**
+     * This is the main function of the EventKeeper application, responsible for displaying the application's menu and handling user input.
+     * 
+     * It displays a menu with options to create a new account, log in, or exit the application.
+     * Based on the user's choice, it calls the corresponding function to handle the action.
+     * 
+     * @return None
+     */
     public static void run(){
         int choice = 0 ;
         System.out.println("███████╗██╗   ██╗███████╗███╗   ██╗████████╗    ██╗  ██╗███████╗███████╗██████╗ ███████╗██████╗ ");
@@ -63,10 +71,24 @@ public class EventKeeper {
     
     }
 
+    /**
+     * Initiates the participant part of the application, 
+     * creating a new RegistrationUI instance and running it.
+     *
+     * @param participantAuth	The authenticated participant to be used in the registration UI.
+     * @return         	None
+     */
     public  void participantPart(Participant participantAuth){
         registrationUI = new RegistrationUI(participantAuth);
         registrationUI.run();
     }
+    /**
+     * Initiates the admin part of the application, 
+     * creating a new AdminUI instance and running it.
+     *
+     * @param adminAuth	The authenticated admin to be used in the admin UI.
+     * @return         	None
+     */
     public  void adminPart(Admin adminAuth){
         AdminUI adminUI = new AdminUI(adminAuth);
         adminUI.run();
@@ -116,6 +138,11 @@ public class EventKeeper {
         }
     }
     
+/**
+ * Logs in the user with the given username and password.
+ *
+ * @return          None.
+ */
     public static void login(){
         System.out.print("~~~> Enter Your Username: ");
         String username = scanner.nextLine();

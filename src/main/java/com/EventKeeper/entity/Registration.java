@@ -16,6 +16,11 @@ public class Registration {
         return id;
     }
 
+    /**
+     * Retrieves the event associated with this registration.
+     *
+     * @return the event associated with this registration
+     */
     public Event getEvent() {
         return event;
     }
@@ -24,10 +29,20 @@ public class Registration {
         this.event = event;
     }
 
+    /**
+     * Retrieves the participant associated with this registration.
+     *
+     * @return the participant object
+     */
     public Participant getParticipant() {
         return participant;
     }
 
+    /**
+     * Sets the participant associated with this registration.
+     *
+     * @param participant the participant object to be associated with this registration
+     */
     public void setParticipant(Participant participant) {
         this.participant = participant;
     }

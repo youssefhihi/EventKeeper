@@ -8,13 +8,15 @@ import java.util.List;
 
 public interface RegistrationDAO {
 
-    public boolean register(Event event, Participant participant );
+     boolean register(Event event, Participant participant );
 
-    public void unregister(int eventID, int participantID);
+     void unregister(int eventID, int participantID);
 
-    public List <Event> registration(int participantID);
+     List <Event> registration(int participantID);
 
-    public List <Registration> getReportOfParticipant(String username);
+     List <Registration> getReportOfParticipant(String username);
 
-    public List <Registration> getReportOfEvent(int eventID);
+     List <Registration> getReportOfEvent(int eventID);
+     
+     List <Participant> getListOfParticpant(int eventID);
 }

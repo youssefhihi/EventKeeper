@@ -11,6 +11,11 @@ public class AdminUI {
     public AdminUI(Admin admin) {
         this.admin = admin;
     }
+    /**
+     * Runs the Admin Management UI, displaying a menu for the admin to manage events, participants, reports, and logout.
+     *
+     * @return         	void
+     */
     public  void run() {
         int choice = 0;
 

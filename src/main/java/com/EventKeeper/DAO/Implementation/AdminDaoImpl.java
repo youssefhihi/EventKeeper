@@ -14,6 +14,13 @@ public class AdminDaoImpl implements AdminDAO {
 
     private Admin admin = new Admin("admin", "1234", role.Admin);    
     private static final RegistrationDAO registrationDAO = RegistrationDaoImp.getInstance();
+    /**
+     * Logs in an admin user with the given username and password.
+     *
+     * @param  username  the username of the admin user
+     * @param  password  the password of the admin user
+     * @return           the admin user if the login is successful, null otherwise
+     */
     @Override
     public Admin login(String username, String password) {
         try{
@@ -30,11 +37,23 @@ public class AdminDaoImpl implements AdminDAO {
         }
     }
 
+    /**
+     * Retrieves a list of registrations for a specific participant.
+     *
+     * @param  username  the username of the participant
+     * @return          a list of registrations for the specified participant
+     */
     @Override
     public List<Registration> getReportOfParticipant(String username) {
        return registrationDAO.getReportOfParticipant(username);
     }
 
+    /**
+     * Retrieves a list of registrations for a specific event.
+     *
+     * @param eventID    the ID of the event
+     * @return          a list of registrations for the specified event
+     */
     @Override
     public List <Registration>  getReportOfEvent(int eventID) {
          return registrationDAO.getReportOfEvent(eventID);

@@ -3,9 +3,9 @@ import com.EventKeeper.entity.Participant;
 import java.util.List;
 
 public interface ParticipantDAO {
-    public boolean addParticipant(Participant participant);
-    public boolean updateParticipant(int id, Participant participant);
-    public void deleteParticipant(int participantId);
-    public List<Participant> getParticipants();
-    public Participant login(String username , String password);
+     boolean addParticipant(Participant participant);
+     boolean updateParticipant(int id, Participant participant);
+     void deleteParticipant(int participantId);
+     List<Participant> getParticipants();
+     Participant login(String username , String password);
 }

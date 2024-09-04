@@ -36,7 +36,9 @@ public class RegistrationUI {
             System.out.println("╠─────┼────────────────────────────────────────────╣");
             System.out.println("║  5  │  Display Registered Events                 ║");
             System.out.println("╠─────┼────────────────────────────────────────────╣");
-            System.out.println("║  6  │  Logout                                    ║");
+            System.out.println("║  6  │  Displaying Registeration of Event         ║");
+            System.out.println("╠─────┼────────────────────────────────────────────╣");
+            System.out.println("║  7  │  Logout                                    ║");
             System.out.println("╚══════════════════════════════════════════════════╝");
             
             try {
@@ -67,10 +69,14 @@ public class RegistrationUI {
                     showLoading("Displaying Registered Events");
                     displayRegisteredEvents();
                     break;
+                case 6:
+                    showLoading("Displaying Registeration of Event");
+                    displayRegistration();
+                    break;
                 default:
                     System.out.println("[ERROR] Invalid choice. Please try again.");
             }
-        }while(choice != 6);
+        }while(choice != 7);
     }
 
         public static void showEvents() {
@@ -254,6 +260,38 @@ public class RegistrationUI {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private static void displayRegistration() {
+        int id;
+            while(true){
+                try {
+                    System.out.print("~~> Enter ID for event you want to register: ");
+                     id = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                }catch (Exception e){
+                    System.out.println("[ERROR] Invalid input. Please enter a valid ID.");
+                    scanner.nextLine();
+                }
+            }   
+        List <Participant> participants = registrationService.getListOfParticpant(id);
+        if (!participants.isEmpty()) {
+            System.out.println("╔══════════════════════════════════════════════════════════╗");
+            System.out.println(  "            " + participants.size() + " Participants registred to this Event");
+            System.out.println("╚══════════════════════════════════════════════════════════╝");
+            for (Participant participant : participants) {
+                System.out.println("╔════════════════════════════════════════════════════════╗");
+                System.out.println("║    Username :  " + participant.getUsername());
+                System.out.println("╚════════════════════════════════════════════════════════╝");
+                System.out.println(); 
+            }
+        } else {
+            System.out.println("╔══════════════════════════════════════════════════╗");
+            System.out.println("║ [INFO]  No participants registred in this event  ║");
+            System.out.println("╚══════════════════════════════════════════════════╝");
+        }
+
     }
 
     private static void showEventsUI(List<Event> events) {

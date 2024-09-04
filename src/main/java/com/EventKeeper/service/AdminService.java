@@ -7,7 +7,7 @@ import com.EventKeeper.entity.Registration;
 
 public interface AdminService {
 
-    public Admin login(String username, String password);
-    public List <Registration> getReportOfParticipant(String username);
-    public List <Registration> getReportOfEvent(int eventID);
+     Admin login(String username, String password);
+     List <Registration> getReportOfParticipant(String username);
+     List <Registration> getReportOfEvent(int eventID);
 }

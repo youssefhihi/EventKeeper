@@ -12,6 +12,12 @@ public class Reports {
     private static Scanner scanner = new Scanner(System.in);
     private static AdminDAO adminDAO = new AdminDaoImpl();
 
+    /**
+     * Runs the reports management system, presenting the user with a menu to select
+     * from various report options or to log out.
+     *
+     * @return          none
+     */
     public static void run(){
         int choice = 0 ;
         do{
@@ -52,6 +58,16 @@ public class Reports {
     }
 
 
+    /**
+     * Displays a report of the events a participant has joined.
+     * 
+     * Prompts the user to enter a username, validates the input, and then retrieves 
+     * the participant's event registrations. If the participant has joined events, 
+     * their details are displayed in a formatted table. Otherwise, a message 
+     * indicating no participation is shown.
+     * 
+     * @return None
+     */
     private static void showParticipantReport() {
         String username;
         while (true) {
@@ -90,6 +106,11 @@ public class Reports {
     }
 
 
+    /**
+     * Displays a report of participants for a given event.
+     *
+     * @return none
+     */
     private static void showEventReport() {
         int id;
         while (true) {

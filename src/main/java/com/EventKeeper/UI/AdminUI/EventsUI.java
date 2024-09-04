@@ -1,17 +1,25 @@
 package com.EventKeeper.UI.AdminUI;
 
 import com.EventKeeper.utility.ValidateEvent;
-import com.EventKeeper.DAO.EventDAO;
-import com.EventKeeper.DAO.Implementation.EventDaoImpl;
 import com.EventKeeper.entity.Event;
+import com.EventKeeper.service.EventService;
+import com.EventKeeper.service.impl.EventServiceImpl;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class EventsUI {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final EventDAO eventDAO = EventDaoImpl.getInstance();
+    private static final EventService eventService = new EventServiceImpl();
     private static final ValidateEvent validateEvent = new ValidateEvent();
 
+    /**
+     * Runs the events management UI, presenting the user with a menu of options to 
+     * interact with events, including getting all events, searching for an event, 
+     * adding a new event, updating an event, deleting an event, and exiting the UI.
+     *
+     * @return none
+     */
     public static void run() {
         int choice = 0;
 
@@ -70,9 +78,14 @@ public class EventsUI {
         } while (choice != 6);
     }
 
+    /**
+     * Displays a list of events to the console. If no events are found, it prints a message indicating that no events were found.
+     *
+     * @throws Exception if an error occurs while retrieving the list of events from the eventDAO
+     */
     public static void showEvents() {
         try {
-            List<Event> events = eventDAO.getEvents();
+            List<Event> events = eventService.getEvents();
             if (!events.isEmpty()) {
                 System.out.println("╔════════════════════════════════════════════════════╗");
                 System.out.println("║                   List of Events                   ║");
@@ -89,10 +102,14 @@ public class EventsUI {
     }
 
 
+    /**
+     * Adds an event 
+     * @return          none
+     */
     public static void addEvent() {
         Event  event = eventData();
         try {
-            eventDAO.addEvent(event);
+            eventService.addEvent(event);
             System.out.println("╔════════════════════════════════════════════╗");
             System.out.println("║  [SUCCESS]    Event Added  Successfully    ║");
             System.out.println("╚════════════════════════════════════════════╝");
@@ -102,6 +119,11 @@ public class EventsUI {
     }
 
 
+    /**
+     * Updates an existing event.
+     *
+     * @return none
+     */
     public static void updateEvent() {
         try {
             int id;
@@ -116,7 +138,7 @@ public class EventsUI {
                 }
             }   
         Event event = eventData();
-            boolean updated = eventDAO.updateEvent(id,event);
+            boolean updated = eventService.updateEvent(id,event);
             if (updated){
                 System.out.println("╔════════════════════════════════════════════╗");
                 System.out.println("║  [SUCCESS]    Event Updated  Successfully  ║");
@@ -131,11 +153,16 @@ public class EventsUI {
         }
     }
 
+    /**
+     * Deletes an existing event based on the event ID.
+     *
+     * @return none
+     */
     public static void deleteEvent() {
         System.out.print("~~~> 	Enter Event ID To Delete: ");
         int  id = scanner.nextInt();
         try{
-           boolean deleted =  eventDAO.deleteEvent(id);
+           boolean deleted =  eventService.deleteEvent(id);
            if (deleted){
                 System.out.println("╔════════════════════════════════════════════╗");
                 System.out.println("║  [SUCCESS]    Event Deleted  Successfully  ║");
@@ -150,6 +177,11 @@ public class EventsUI {
         }
     }
 
+    /**
+     * Searches for events based on user selection.
+     *
+     * @return none
+     */
     public static  void searchEvent() {
         int choice = 0;
         do{
@@ -195,7 +227,7 @@ public class EventsUI {
         System.out.print("~~> Enter Type to search: ");
         String type = scanner.nextLine();
         try{
-            List<Event> events = eventDAO.getEventsByType(type);
+            List<Event> events = eventService.getEventsByType(type);
             if (!events.isEmpty()) {
                 System.out.println("╔════════════════════════════════════════════╗");
                 System.out.println("║ [SUCCESS] List of Events filtered by Type  ║");
@@ -214,7 +246,7 @@ public class EventsUI {
         System.out.print("~~> Enter Date to search: ");
         String Date = scanner.nextLine();
         try{
-            List<Event> events = eventDAO.getEventsByDate(Date);
+            List<Event> events = eventService.getEventsByDate(Date);
             if (!events.isEmpty()) {
                 System.out.println("╔════════════════════════════════════════════╗");
                 System.out.println("║ [SUCCESS] List of Events filtered by Date  ║");
@@ -232,7 +264,7 @@ public class EventsUI {
         System.out.print("~~> Enter location to search: ");
         String location = scanner.nextLine();
         try{
-            List<Event> events = eventDAO.getEventsByLocalisation(location);
+            List<Event> events = eventService.getEventsByLocalisation(location);
             if (!events.isEmpty()) {
                 System.out.println("╔════════════════════════════════════════════════╗");
                 System.out.println("║ [SUCCESS] List of Events filtered by Location  ║");
@@ -248,6 +280,12 @@ public class EventsUI {
         }
     }
 
+    /**
+     * This function is used to create a new Event object by prompting the user to input the event's details.
+     * It validates the user's input for title, description, location, date, and type.
+     * 
+     * @return  A new Event object with the user's input details.
+     */
     private static Event eventData() {
        
         String title;
@@ -307,6 +345,12 @@ public class EventsUI {
     }
 
 
+    /**
+     * Displays a list of events .
+     *
+     * @param  events	a list of Event objects to be displayed
+     * @return        	none
+     */
     private static void showEventsUI(List<Event> events) {       
         for (Event event : events) {
             System.out.println("╔═════════════════════════════════════════════╗");

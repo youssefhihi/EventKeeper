@@ -15,12 +15,23 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     private Map<Integer, Participant> participants = new HashMap<>();
 
 
+    /**
+     * Returns the singleton instance of the ParticipantDaoImpl class.
+     *
+     * @return  the singleton instance of ParticipantDaoImpl
+     */
     public static ParticipantDaoImpl getInstance() {
         if (instance == null) {
             instance = new ParticipantDaoImpl();
         }
         return instance;
     }
+    /**
+     * Checks whether a given username is unique among all participants.
+     *
+     * @param username the username to check for uniqueness
+     * @return true if the username is unique, false otherwise
+     */
     private boolean isUsernameUnique(String username){
         try{
            return  participants.values().stream()
@@ -30,6 +41,13 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         }
     }
 
+    /**
+     * Attempts to log in a participant with the given username and password.
+     *
+     * @param username  the username of the participant
+     * @param password  the password of the participant
+     * @return          the participant object if the login is successful, null otherwise
+     */
     public Participant login(String username, String password) {
         try {
 
@@ -47,6 +65,12 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     
     
 
+    /**
+     * Attempts to add a new participant to the system.
+     *
+     * @param participant  the participant object to be added
+     * @return          true if the participant is added successfully, false otherwise
+     */
     @Override
     public boolean addParticipant(Participant participant) {
         try{
@@ -63,6 +87,13 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         return false;
     }
 
+    /**
+     * Updates a participant in the system with the given participant ID and new participant information.
+     *
+     * @param  id         the ID of the participant to update
+     * @param  participant the new participant information to update with
+     * @return             true if the participant was successfully updated, false otherwise
+     */
     @Override
     public boolean updateParticipant(int id,Participant participant) {
         try{
@@ -82,6 +113,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         return false;
     }
 
+    /**
+     * Deletes a participant from the system with the given participant ID.
+     *
+     * @param  participantId  the ID of the participant to delete
+     */
     @Override
     public void deleteParticipant(int participantId) {
         try{
@@ -91,6 +127,11 @@ public class ParticipantDaoImpl implements ParticipantDAO {
         }
     }
 
+    /**
+     * Retrieves a list of all participants in the system.
+     *
+     * @return  a list of Participant objects representing all participants in the system
+     */
     @Override
     public List<Participant> getParticipants() {
         try{
