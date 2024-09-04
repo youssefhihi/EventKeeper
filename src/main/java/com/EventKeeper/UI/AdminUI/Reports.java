@@ -137,7 +137,10 @@ public class Reports {
                     System.out.println(); 
                 }
         }else{
-            System.out.println();
+            System.out.println("╔══════════════════════════════════════════════════════════╗");
+            System.out.println("║  No participants joined in this event                    ║");
+            System.out.println("╚══════════════════════════════════════════════════════════╝");
+
         }
     }
 

@@ -35,7 +35,7 @@ public class ParticipantDaoImpl implements ParticipantDAO {
     private boolean isUsernameUnique(String username){
         try{
            return  participants.values().stream()
-                    .noneMatch(participant -> participant.getUsername().equals(username));
+                    .noneMatch(participant -> participant.getUsername().equals(username)) && !username.equals("admin");
         }catch(Exception e){
             return false;
         }

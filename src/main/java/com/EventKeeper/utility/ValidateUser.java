@@ -9,7 +9,7 @@ public class ValidateUser {
      * @return         	true if the username is valid, false otherwise
      */
     public static boolean validateUsername(String username) {
-        return username != null && !username.trim().isEmpty() && username.length() >= 3 && username != "admin";
+        return username != null && !username.trim().isEmpty() && username.length() >= 3;
     }
 
     /**
