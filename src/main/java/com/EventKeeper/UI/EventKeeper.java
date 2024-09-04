@@ -3,19 +3,19 @@ package com.EventKeeper.UI;
 import java.util.Scanner;
 
 import com.EventKeeper.DAO.AdminDAO;
-import com.EventKeeper.DAO.ParticipantDAO;
-import com.EventKeeper.DAO.Implementation.ParticipantDaoImpl;
 import com.EventKeeper.UI.AdminUI.AdminUI;
 import com.EventKeeper.UI.ParticipantUI.RegistrationUI;
 import com.EventKeeper.entity.Admin;
 import com.EventKeeper.entity.Participant;
 import com.EventKeeper.enums.role;
+import com.EventKeeper.service.ParticipantService;
+import com.EventKeeper.service.impl.ParticipantServiceImpl;
 import com.EventKeeper.DAO.Implementation.AdminDaoImpl;
 import com.EventKeeper.utility.ValidateUser;
 
 public class EventKeeper {
     private static Scanner scanner = new Scanner(System.in);
-    private static ParticipantDAO participantDAO = ParticipantDaoImpl.getInstance();
+    private static ParticipantService participantService = new ParticipantServiceImpl();
     private static AdminDAO adminDAO = new AdminDaoImpl();
     private RegistrationUI registrationUI;
     public static void run(){
@@ -104,7 +104,7 @@ public class EventKeeper {
         }
     
         Participant participant = new Participant(username, password, role.participant);
-        boolean added = participantDAO.addParticipant(participant);
+        boolean added = participantService.addParticipant(participant);
         if (added) {
             System.out.println("╔══════════════════════════════════════════════════╗");
             System.out.println("║ [Success] Your Account Created Successfully! :)  ║");
@@ -124,7 +124,7 @@ public class EventKeeper {
         String password = scanner.nextLine();
     
         Admin admin = adminDAO.login(username, password);
-        Participant participant = participantDAO.login(username, password);  
+        Participant participant = participantService.login(username, password);  
         System.out.print("Logging in");
         try {
             for (int i = 0; i < 3; i++) {

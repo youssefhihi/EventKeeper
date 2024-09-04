@@ -1,9 +1,10 @@
 package com.EventKeeper.UI.AdminUI;
 
-import com.EventKeeper.DAO.Implementation.ParticipantDaoImpl;
-import com.EventKeeper.DAO.ParticipantDAO;
+
 import com.EventKeeper.entity.Participant;
 import com.EventKeeper.enums.role;
+import com.EventKeeper.service.ParticipantService;
+import com.EventKeeper.service.impl.ParticipantServiceImpl;
 import com.EventKeeper.utility.ValidateUser;
 
 import java.util.List;
@@ -11,8 +12,7 @@ import java.util.Scanner;
 
 public class ParticipantUI {
     private static Scanner scanner = new Scanner(System.in);
-    private static ParticipantDAO participantDAO = ParticipantDaoImpl.getInstance();
-    
+    private static ParticipantService participantService = new ParticipantServiceImpl();
     public  void run(){
         int choice = 0;
         do{
@@ -65,7 +65,7 @@ public class ParticipantUI {
 
     private void showParticipant() {
         try {
-            List<Participant> participants = participantDAO.getParticipants();
+            List<Participant> participants = participantService.getParticipants();
             
             if (!participants.isEmpty()) {
                 System.out.println("╔══════════════════════════════════════════════════════════╗");
@@ -91,7 +91,7 @@ public class ParticipantUI {
 
     private void addParticipant(){
         Participant participant = ParticipantData();
-        boolean added = participantDAO.addParticipant(participant);
+        boolean added = participantService.addParticipant(participant);
         if (added){
             System.out.println("╔═════════════════════════════════════════════════════╗");
             System.out.println("║  [SUCCESS]    Participant Added  Successfully! :)   ║");
@@ -119,7 +119,7 @@ public class ParticipantUI {
 
         Participant participant = ParticipantData();
 
-        boolean updated = participantDAO.updateParticipant(id, participant);
+        boolean updated = participantService.updateParticipant(id, participant);
         if (updated){
             System.out.println("╔════════════════════════════════════════════════════╗");
             System.out.println("║  [SUCCESS]    Participant Updated  Successfully    ║");
@@ -134,7 +134,7 @@ public class ParticipantUI {
         System.out.print("~~~> 	Enter Participant ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
-        participantDAO.deleteParticipant(id);
+        participantService.deleteParticipant(id);
     }
 
     private Participant ParticipantData(){

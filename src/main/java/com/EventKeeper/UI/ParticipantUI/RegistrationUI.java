@@ -2,10 +2,11 @@ package com.EventKeeper.UI.ParticipantUI;
 
 import com.EventKeeper.DAO.EventDAO;
 import com.EventKeeper.DAO.Implementation.EventDaoImpl;
-import com.EventKeeper.DAO.Implementation.RegistrationDaoImp;
-import com.EventKeeper.DAO.RegistrationDAO;
 import com.EventKeeper.entity.Event;
 import com.EventKeeper.entity.Participant;
+import com.EventKeeper.service.RegistrationService;
+import com.EventKeeper.service.impl.RegistrationServiceImpl;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class RegistrationUI {
     private Participant participant;
     private static final Scanner scanner = new Scanner(System.in);
     private static final EventDAO eventDAO = EventDaoImpl.getInstance();
-    private static final RegistrationDAO registrationDAO = RegistrationDaoImp.getInstance();
+    private static final RegistrationService registrationService = new RegistrationServiceImpl();
 
     public RegistrationUI(Participant participant){
         this.participant = participant;
@@ -105,7 +106,7 @@ public class RegistrationUI {
             }   
             Event event = eventDAO.getEvent(id);
             if (event != null) {
-               boolean registred =  registrationDAO.register(event,this.participant);
+               boolean registred =  registrationService.register(event,this.participant);
                if (registred) {
                    System.out.println("╔═══════════════════════════════════════════════════╗");
                    System.out.println("║ [Success] Successfully registered to an event! :) ║");
@@ -128,7 +129,7 @@ public class RegistrationUI {
             scanner.nextLine();
             Event event = eventDAO.getEvent(id);
             if (event != null) {
-                registrationDAO.unregister(event.getId(),this.participant.getParticipantID());
+                registrationService.unregister(event.getId(),this.participant.getParticipantID());
             }else{
                 System.out.println("╔══════════════════════════════════════════╗");
                 System.out.println("║  [Error] No event found with this ID :(  ║");
@@ -137,7 +138,7 @@ public class RegistrationUI {
         }
 
         public void displayRegisteredEvents(){
-            List<Event> events = registrationDAO.registration(this.participant.getParticipantID());
+            List<Event> events = registrationService.registration(this.participant.getParticipantID());
             if (!events.isEmpty()) {
                 System.out.println("╔═══════════════════════════════════╗");
                 System.out.println("║    [SUCCESS] All Events Found     ║");
